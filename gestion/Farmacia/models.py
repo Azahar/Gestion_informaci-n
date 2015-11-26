@@ -27,7 +27,7 @@ class AuthGroupPermissions(models.Model):
     class Meta:
         managed = False
         db_table = 'auth_group_permissions'
-        unique_together = (('group_id', 'permission_id'),)
+     #   unique_together = (('group_id', 'permission_id'),)
 
 
 class AuthPermission(models.Model):
@@ -38,7 +38,7 @@ class AuthPermission(models.Model):
     class Meta:
         managed = False
         db_table = 'auth_permission'
-        unique_together = (('content_type_id', 'codename'),)
+     #   unique_together = (('content_type_id', 'codename'),)
 
 
 class AuthUser(models.Model):
@@ -65,7 +65,7 @@ class AuthUserGroups(models.Model):
     class Meta:
         managed = False
         db_table = 'auth_user_groups'
-        unique_together = (('user_id', 'group_id'),)
+      #  unique_together = (('user_id', 'group_id'),)
 
 
 class AuthUserUserPermissions(models.Model):
@@ -75,7 +75,7 @@ class AuthUserUserPermissions(models.Model):
     class Meta:
         managed = False
         db_table = 'auth_user_user_permissions'
-        unique_together = (('user_id', 'permission_id'),)
+      #  unique_together = (('user_id', 'permission_id'),)
 
 
 class DjangoAdminLog(models.Model):
@@ -150,18 +150,6 @@ class Tpantalla(models.Model):
         db_table = 'tpantalla'
 
 
-class Tpermiso(models.Model):
-    rolname = models.ForeignKey('Trol', db_column='rolName')  # Field name made lowercase.
-    pantalla = models.ForeignKey(Tpantalla, db_column='pantalla')
-    acceso = models.TextField()  # This field type is a guess.
-    modificacion = models.TextField()  # This field type is a guess.
-
-    class Meta:
-        managed = False
-        db_table = 'tpermiso'
-        unique_together = (('rolName', 'pantalla'),)
-
-
 class Trol(models.Model):
     rolname = models.CharField(db_column='rolName', primary_key=True, max_length=50)  # Field name made lowercase.
     roldes = models.CharField(db_column='rolDes', max_length=225, blank=True, null=True)  # Field name made lowercase.
@@ -171,6 +159,16 @@ class Trol(models.Model):
         managed = False
         db_table = 'trol'
 
+class Tpermiso(models.Model):
+    rolname = models.ForeignKey('Trol', db_column='rolName')  # Field name made lowercase.
+    pantalla = models.ForeignKey('Tpantalla', db_column='pantalla')
+    acceso = models.TextField()  # This field type is a guess.
+    modificacion = models.TextField()  # This field type is a guess.
+
+    class Meta:
+        managed = False
+        db_table = 'tpermiso'
+        unique_together = (('rolname', 'pantalla'),)
 
 class Tusuario(models.Model):
     nombre = models.CharField(primary_key=True, max_length=50)
@@ -180,3 +178,6 @@ class Tusuario(models.Model):
     class Meta:
         managed = False
         db_table = 'tusuario'
+
+class Admin:
+        pass
