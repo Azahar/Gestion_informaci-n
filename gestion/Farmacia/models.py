@@ -11,7 +11,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=80)
 
@@ -126,13 +125,14 @@ class Tlaboratorio(models.Model):
     id_laboratorio = models.AutoField(db_column='ID_LABORATORIO', primary_key=True)  # Field name made lowercase.
     nombre_laboratorio = models.CharField(db_column='NOMBRE_LABORATORIO', max_length=80, blank=True, null=True)  # Field name made lowercase.
 
+    class Admin:
+           list_display = ('ID_LABORATORIO', 'NOMBRE_LABORATORIO')
+     
     class Meta:
         managed = False
         db_table = 'tlaboratorio'
 
-    class Admin:
-        pass
-
+   
 class Tmedicamento(models.Model):
     id_medicamento = models.IntegerField(db_column='ID_MEDICAMENTO', primary_key=True)  # Field name made lowercase.
     nombre_medicamento = models.CharField(db_column='NOMBRE_MEDICAMENTO', max_length=80, blank=True, null=True)  # Field name made lowercase.
@@ -143,9 +143,7 @@ class Tmedicamento(models.Model):
         managed = False
         db_table = 'tmedicamento'
 
-    class Admin:
-        pass
-
+   
 class Tpantalla(models.Model):
     pantalla = models.CharField(primary_key=True, max_length=50)
 
@@ -153,9 +151,7 @@ class Tpantalla(models.Model):
         managed = False
         db_table = 'tpantalla'
 
-    class Admin:
-        pass
-
+   
 class Trol(models.Model):
     rolname = models.CharField(db_column='rolName', primary_key=True, max_length=50)  # Field name made lowercase.
     roldes = models.CharField(db_column='rolDes', max_length=225, blank=True, null=True)  # Field name made lowercase.
@@ -164,9 +160,6 @@ class Trol(models.Model):
     class Meta:
         managed = False
         db_table = 'trol'
-
-    class Admin:
-        pass
 
 class Tpermiso(models.Model):
     rolname = models.ForeignKey('Trol', db_column='rolName')  # Field name made lowercase.
@@ -178,10 +171,8 @@ class Tpermiso(models.Model):
         managed = False
         db_table = 'tpermiso'
         unique_together = (('rolname', 'pantalla'),)
-
-    class Admin:
-        pass
-
+    
+  
 class Tusuario(models.Model):
     nombre = models.CharField(primary_key=True, max_length=50)
     password = models.CharField(max_length=50)
@@ -191,5 +182,4 @@ class Tusuario(models.Model):
         managed = False
         db_table = 'tusuario'
 
-    class Admin:
-            pass
+  
