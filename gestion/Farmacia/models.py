@@ -130,6 +130,8 @@ class Tlaboratorio(models.Model):
         managed = False
         db_table = 'tlaboratorio'
 
+    class Admin:
+        pass
 
 class Tmedicamento(models.Model):
     id_medicamento = models.IntegerField(db_column='ID_MEDICAMENTO', primary_key=True)  # Field name made lowercase.
@@ -141,6 +143,8 @@ class Tmedicamento(models.Model):
         managed = False
         db_table = 'tmedicamento'
 
+    class Admin:
+        pass
 
 class Tpantalla(models.Model):
     pantalla = models.CharField(primary_key=True, max_length=50)
@@ -149,6 +153,8 @@ class Tpantalla(models.Model):
         managed = False
         db_table = 'tpantalla'
 
+    class Admin:
+        pass
 
 class Trol(models.Model):
     rolname = models.CharField(db_column='rolName', primary_key=True, max_length=50)  # Field name made lowercase.
@@ -158,6 +164,9 @@ class Trol(models.Model):
     class Meta:
         managed = False
         db_table = 'trol'
+
+    class Admin:
+        pass
 
 class Tpermiso(models.Model):
     rolname = models.ForeignKey('Trol', db_column='rolName')  # Field name made lowercase.
@@ -170,6 +179,9 @@ class Tpermiso(models.Model):
         db_table = 'tpermiso'
         unique_together = (('rolname', 'pantalla'),)
 
+    class Admin:
+        pass
+
 class Tusuario(models.Model):
     nombre = models.CharField(primary_key=True, max_length=50)
     password = models.CharField(max_length=50)
@@ -179,5 +191,5 @@ class Tusuario(models.Model):
         managed = False
         db_table = 'tusuario'
 
-class Admin:
-        pass
+    class Admin:
+            pass
