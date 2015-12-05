@@ -129,6 +129,7 @@ class Tlaboratorio(models.Model):
     class Meta:
         managed = False
         db_table = 'tlaboratorio'
+        ordering = ["id_laboratorio"]
 
    
 class Tmedicamento(models.Model):
@@ -140,6 +141,7 @@ class Tmedicamento(models.Model):
     class Meta:
         managed = False
         db_table = 'tmedicamento'
+        ordering = ["id_medicamento"]
 
    
 class Tpantalla(models.Model):
@@ -179,5 +181,6 @@ class Tusuario(models.Model):
     class Meta:
         managed = False
         db_table = 'tusuario'
+        ordering = ["nombre"]
 
   

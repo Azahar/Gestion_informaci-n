@@ -11,7 +11,7 @@ class adminTlaboratorio (admin.ModelAdmin):
     ##search_fields = ("id_laboratorio")
 
 class adminTmedicamento (admin.ModelAdmin):
-	list_display = ("id_medicamento","nombre_medicamento","cantidad_disponible",'laboratorio')
+	list_display = ("id_medicamento","nombre_medicamento","cantidad_disponible")
 
 ##class adminTpantalla(admin.ModelAdmin):
 ##	list_display = ("pantalla")
