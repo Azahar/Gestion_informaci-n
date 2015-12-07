@@ -11,7 +11,11 @@ class adminTlaboratorio (admin.ModelAdmin):
     ##search_fields = ("id_laboratorio")
 
 class adminTmedicamento (admin.ModelAdmin):
-	list_display = ("id_medicamento","nombre_medicamento","cantidad_disponible")
+	list_display = ("id_medicamento","nombre_medicamento","cantidad_disponible","_laboratorio")
+
+	def _laboratorio(self, obj):
+		return obj.laboratorio.id_laboratorio
+
 
 ##class adminTpantalla(admin.ModelAdmin):
 ##	list_display = ("pantalla")

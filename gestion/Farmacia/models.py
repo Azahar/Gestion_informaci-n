@@ -125,6 +125,8 @@ class Tlaboratorio(models.Model):
     id_laboratorio = models.AutoField(db_column='ID_LABORATORIO', primary_key=True)  # Field name made lowercase.
     nombre_laboratorio = models.CharField(db_column='NOMBRE_LABORATORIO', max_length=80, blank=True, null=True)  # Field name made lowercase.
 
+    def __unicode__(self):
+        return self.nombre_laboratorio
      
     class Meta:
         managed = False
